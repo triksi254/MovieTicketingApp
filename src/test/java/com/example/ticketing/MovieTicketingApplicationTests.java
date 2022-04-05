@@ -1,4 +1,4 @@
-package com.example.Ticketing;
+package com.example.ticketing;
 
 
 import org.junit.jupiter.api.Test;
