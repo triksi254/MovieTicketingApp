@@ -5,7 +5,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-<h1>Hi am dashboard</h1>
+<span>Hi am </span><span th:text="${username}"></span> and my role is <span th:text="${role}"></span>
 <form th:action="@{/logout}" method="post">
    <button type="submit" value="">Logout</button>
 </form>
