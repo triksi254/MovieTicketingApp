@@ -5,8 +5,9 @@
     <title>Dashboard</title>
 </head>
 <body>
-<span>Hi am </span><span th:text="${username}"></span> and my role is <span th:text="${role}"></span>
+<!--<span>Hi am </span><span th:text="${username}"></span> and my role is <span th:text="${role}"></span>-->
 <!--includes the logout button-->
+<p>Hi I am Dashboard</p>
 <form th:action="@{/logout}" method="post">
    <button type="submit" value="">Logout</button>
 </form>

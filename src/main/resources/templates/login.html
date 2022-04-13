@@ -4,7 +4,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org.com" xml:lang="en" lang="en">
 <head>
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
 <div th:if="${param.error}">
@@ -14,14 +14,16 @@
     You have been logged out.
 </div>
 <form th:action="@{/login}" method="POST">
-    <label>Username</label>
-    <input type="text" name="username" placeholder="Username"/>
+    <label>Email/Username</label>
+    <input type="text" name="email" placeholder="email"/>
 
     <label>Password</label>
     <input type="password" name="password" placeholder="Password"/>
 
     <button type="submit" value="">Login</button>
 </form>
-
+<div>
+    <h3> <a th:href="@{/register}">SignUp</a></h3>
+</div>
 </body>
 </html>
