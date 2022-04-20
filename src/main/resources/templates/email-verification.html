@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org.com">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+<center>
+  <div></div>
+  <div>
+    <h1>Welcome</h1>
+                  <h2>Finish creating your account.</h2>
+                  <h3>Hi<p th:text="${firstName}"></h3>
+                  <h3>We're excited to have you get started. First, you need to confirm your account. Just press the button below.</h3>
+                  <p><a th:href="${verificationURL}">Validate Account</a></p>
+                </div>
+                <div>
+                  <h3>if you experience any issues with the button above, copy and paste the URL below into your web browser.</h3>
+                  <p th:text="${verificationURL}"></p>
+                </div>
+                      <h3>About</h3>
+                      <p>Welcome to Movie Ticketing Application. We publish Movies on
+                        a weekly basis.
+                      </p>
+    <div>
+                      <h3>Useful Links</h3>
+  </div>
+</center>
+</body>
+</html>
