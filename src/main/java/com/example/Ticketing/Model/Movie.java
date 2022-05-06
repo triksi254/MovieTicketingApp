@@ -1,8 +1,12 @@
-package com.example.Ticketing.Model;
+package com.example.ticketing.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.net.URL;
+import java.time.Duration;
+import java.util.List;
 
 
 @Entity
@@ -11,49 +15,78 @@ public class Movie {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String name;
     private String type;
     private String language;
     private String cast;
-    private java.time.Duration duration;
+    private Long duration;
     private String plot;
+    @Column(name = "min_age")
+    private Integer minAge;
+    @Column(name = "image_url")
+    private String imageUrl;
 
+    @OneToMany(mappedBy = "movie", orphanRemoval = true)
+    private List<Reservation> reservations;
+
+    @OneToMany(mappedBy = "movie", orphanRemoval = true)
+    private List<Repertoire> repertoires;
+
+
+
+    public Movie(String imageUrl, List<Reservation> reservations) {
+        this.imageUrl = imageUrl;
+        this.reservations = reservations;
+    }
+
+    public Movie(Integer minAge, String imageUrl, List<Reservation> reservations) {
+        this.minAge = minAge;
+        this.imageUrl = imageUrl;
+        this.reservations = reservations;
+    }
+
+    public Movie(@JsonProperty("id") Long id,
+                 @JsonProperty("name") String name,
+                 @JsonProperty("type") String type,
+                 @JsonProperty("language") String language,
+                 @JsonProperty("cast") String cast,
+                 @JsonProperty("duration") Long duration,
+                 @JsonProperty("plot") String plot, Integer minAge, String imageUrl, URL imageUrl1, List<Reservation> reservations) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.language = language;
+        this.cast = cast;
+        this.duration = duration;
+        this.plot = plot;
+        this.minAge = minAge;
+        this.imageUrl = imageUrl;
+        this.reservations = reservations;
+    }
+
+    public Movie(String name, String type, String language, String cast, Long duration, String plot, Integer minAge, String imageUrl, URL imageUrl1, List<Reservation> reservations) {
+        this.name = name;
+        this.type = type;
+        this.language = language;
+        this.cast = cast;
+        this.duration = duration;
+        this.plot = plot;
+        this.minAge = minAge;
+        this.imageUrl = imageUrl;
+        this.reservations = reservations;
+    }
 
     public Movie() {
-    }
 
-    public Movie (@JsonProperty("id")Long id,
-                  @JsonProperty("name")String name,
-                  @JsonProperty("type")String type,
-                  @JsonProperty("language")String language,
-                  @JsonProperty("cast")String cast,
-                  @JsonProperty("duration")java.time.Duration duration,
-                  @JsonProperty("plot")String plot) {
-        this.Id = id;
-        this.name = name;
-        this.type = type;
-        this.language = language;
-        this.cast = cast;
-        this.duration = duration;
-        this.plot = plot;
-    }
-
-    public Movie(String name, String type, String language, String cast, java.time.Duration duration, String plot) {
-        this.name = name;
-        this.type = type;
-        this.language = language;
-        this.cast = cast;
-        this.duration = duration;
-        this.plot = plot;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -88,11 +121,8 @@ public class Movie {
         this.cast = cast;
     }
 
-    public java.time.Duration getDuration() {
-        return duration;
-    }
 
-    public void setDuration(java.time.Duration duration) {
+    public void setDuration(Long duration) {
         this.duration = duration;
     }
 
@@ -107,7 +137,7 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", Language='" + language + '\'' +
@@ -115,5 +145,41 @@ public class Movie {
                 ", Duration=" + duration +
                 ", plot='" + plot + '\'' +
                 '}';
+    }
+
+    public Integer getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(Integer minAge) {
+        this.minAge = minAge;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public List<Repertoire> getRepertoires() {
+        return repertoires;
+    }
+
+    public void setRepertoires(List<Repertoire> repertoires) {
+        this.repertoires = repertoires;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Long getDuration() {
+        return duration;
     }
 }
